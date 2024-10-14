@@ -45,8 +45,11 @@ export class AdminpageComponent {
 
   async addProduct(){
     if(this.editMode){
-      await this.productService.updateProduct({...this.newProduct,title:this.products[this.editIndex!].title});
-      this.loadProducts()
+      await this.productService.updateProduct({
+        ...this.newProduct,
+        id: this.products[this.editIndex!].id
+      });
+      this.loadProducts();
     }
     else{
       console.log(this.newProduct,'new')
