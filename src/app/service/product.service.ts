@@ -26,13 +26,16 @@ export class ProductService {
     return  this.http.get<any>(searchUrl)
   }
   addProduct(product:any):any{
+    const newId = Date.now();
+    const productWithId = { id: newId, ...product };
     const products = this.getProductsFromLocalStorage();
-    products.push(product);
+    products.unshift(productWithId);
     this.storeProductsInLocalStorage(products)
   }
   updateProduct(updatedProduct:any):any{
+    
     const products = this.getProductsFromLocalStorage();
-    const index = products.findIndex((product:any)=> product.title === updatedProduct.title);
+    const index = products.findIndex((product:any)=> product.id === updatedProduct.id);
     if (index !== -1){
       products[index]=updatedProduct;
       this.storeProductsInLocalStorage(products);
@@ -50,7 +53,6 @@ export class ProductService {
       return this.http.delete(`${this.cartApiUrl}/${products[0].id}`)
     }
     throw new Error('Invalid Action');
-    this.updateCartCount()
   }
   updateCartCount(){
     const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
