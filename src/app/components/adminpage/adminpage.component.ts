@@ -19,18 +19,13 @@ export class AdminpageComponent {
     this.loadProducts()
   }
   loadProducts(){
-    const localStorageProduct =  this.productService.getProductsFromLocalStorage();
-    if(localStorageProduct){
-      this.products = this.productService.getProductsFromLocalStorage();
-    }else{
-      const skip = (this.currentPage - 1) * this.limit;
+    const skip = (this.currentPage - 1) * this.limit;
       this.productService.getProducts(this.limit,skip).subscribe({
         next:(data: { products: any[]; }) =>{
           this.products = data.products;
           this.productService.storeProductsInLocalStorage(this.products)
         }
       })
-    }
   }
   openAddProductModal(){
     this.newProduct = {name:'',price:0,description:'',image:'',quantity:1};
@@ -73,7 +68,7 @@ export class AdminpageComponent {
 
   deleteProduct(id:number){
     this.productService.deleteProduct(id);
-    this.loadProducts();
+    this.products = this.productService.getProductsFromLocalStorage();
   }
 
   onFileChange(event:any){

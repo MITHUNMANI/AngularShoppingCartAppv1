@@ -4,6 +4,7 @@ npm install
 npm install -g angular/cli
 npm start
 AngularShoppingCartApp
+# features
 HTML5
 CSS3
 Typescript
@@ -19,6 +20,6 @@ Input / Output Binding for parent child data sharing
 Subject Behaviour for passing data globally
 Service - API/Data integration
 Date and filter Pipes
-github pages deployment
+
 
 
