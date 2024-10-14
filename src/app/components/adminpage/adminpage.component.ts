@@ -19,13 +19,14 @@ export class AdminpageComponent {
     this.loadProducts()
   }
   loadProducts(){
-    const skip = (this.currentPage - 1) * this.limit;
-      this.productService.getProducts(this.limit,skip).subscribe({
-        next:(data: { products: any[]; }) =>{
-          this.products = data.products;
-          this.productService.storeProductsInLocalStorage(this.products)
-        }
-      })
+    this.products = this.productService.getProductsFromLocalStorage();
+    // const skip = (this.currentPage - 1) * this.limit;
+    //   this.productService.getProducts(this.limit,skip).subscribe({
+    //     next:(data: { products: any[]; }) =>{
+    //       this.products = data.products;
+    //       this.productService.storeProductsInLocalStorage(this.products)
+    //     }
+    //   })
   }
   openAddProductModal(){
     this.newProduct = {name:'',price:0,description:'',image:'',quantity:1};

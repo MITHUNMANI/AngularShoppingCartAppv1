@@ -12,6 +12,11 @@ export class AppComponent implements OnInit {
   currentYear:number = new Date().getFullYear();
   constructor(private productService: ProductService,private router: Router) {}
   ngOnInit(): void {
+      this.productService.getProducts(10,0).subscribe({
+        next:(data: { products: any[]; }) =>{
+          this.productService.storeProductsInLocalStorage(data.products)
+        }
+      })
     this.productService.cartCount.subscribe(count => {
       this.cartCount = count;
     });
