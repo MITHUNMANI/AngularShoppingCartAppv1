@@ -49,7 +49,9 @@ export class AdminpageComponent {
         ...this.newProduct,
         id: this.products[this.editIndex!].id
       });
-      this.loadProducts();
+      this.products = this.productService.getProductsFromLocalStorage();
+
+      // this.loadProducts();
     }
     else{
       console.log(this.newProduct,'new')

@@ -18,10 +18,7 @@ export class ProductpageComponent {
     this.updateCartCount()
   }
   loadProducts(){
-    const localStorageProduct =  this.productService.getProductsFromLocalStorage();
-    if(localStorageProduct){
-      this.products = this.productService.getProductsFromLocalStorage();
-    }else{
+   
       const skip = (this.currentPage - 1) * this.limit;
       this.productService.getProducts(this.limit,skip).subscribe({
         next:(data: { products: any[]; }) =>{
@@ -29,7 +26,7 @@ export class ProductpageComponent {
           this.productService.storeProductsInLocalStorage(this.products)
         }
       })
-    }
+    
     
   }
   onSearch(){

@@ -1,21 +1,8 @@
 <div class="container">
     <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search products..."
     class="search-bar" />
-<div>
-  
+<div> 
     <app-product-card [products]="products" [searchTerm]="searchTerm" (addToCartFn)="addToCart($event)"></app-product-card>
-
-    <!-- <div *ngFor='let product of products | filter: searchTerm ' class='card'>
-        <img [src]='product.thumbnail' alt='{{ product.title }}' class='card-img-top' />
-        <div class='card-body'>
-            <h5 class='card-title'>{{ product.title }}</h5>
-            <p class='card-text'>{{ product.description }}</p>
-            <p class='card-price'>{{ product.price | currency }}</p>
-            <button (click)="addToCart(product)" class='btn btn-primary'>
-                {{ isProductInCart(product) ? 'Remove from Cart' : 'Add to Cart' }}
-            </button>
-        </div>
-    </div> -->
 </div>
 <nav aria-label="Page navigation" *ngIf="!searchTerm && products.length > 1 ">
     <ul class="pagination">
@@ -29,4 +16,5 @@
             <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
         </li>
     </ul>
-</nav></div>
+</nav>
+</div>

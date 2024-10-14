@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container login-form">
     <h2>Login Form</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -12,6 +12,8 @@
                 <small *ngIf="password?.errors?.['required']">Password is required.</small>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </div>
         </form>
 </div>

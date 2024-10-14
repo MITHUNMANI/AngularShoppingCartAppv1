@@ -57,7 +57,7 @@ export class ProductService {
   updateCartCount(){
     const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     const totalCount = cartItems.reduce((total:any,item:{quantity:any;})=> total + item.quantity,0)
-    this.cartCount.next(totalCount)
+    this.cartCount.next(totalCount);
   }
   getCartItems():any[]{
     return this.cartItems
