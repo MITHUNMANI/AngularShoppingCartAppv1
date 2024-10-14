@@ -1,0 +1,98 @@
+<div class="container">
+    <h2>Admin Panel</h2>
+    <div class="inline-flex" style="display: inline-flex;
+    margin: 10px auto;
+    justify-content: space-between;
+    width: 100%;">
+    <input type="text" style="width: auto;" [(ngModel)]="searchTerm" placeholder="Search products..." class="search-bar"/>    
+    <button (click)="openAddProductModal()" class="btn btn-primary">Add Product</button>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products | filter:searchTerm">
+            <td><img [src]="product.thumbnail" style="width:50px;"></td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.price | currency }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.stock }}</td>
+                <td class="inline-btn">
+                    <button (click)="editProduct(product)" class="edit-btn btn btn-warning">Edit</button>
+                    <button (click)="deleteProduct(product.title)" class="delete-btn btn btn-danger">Delete</button>
+                </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ editMode ? 'Edit' : 'Add' }} Product</h5>
+                <button type="button" class="close" style="margin-left: auto;border: none" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true" style="font-size: 16px;font-weight: 700;">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="addProduct()" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" [(ngModel)]="newProduct.title" name="name" required class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Price:</label>
+                        <input type="number" [(ngModel)]="newProduct.price" name="price" required class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea [(ngModel)]="newProduct.description" name="description" required class="form-control"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity:</label>
+                        <input type="number" [(ngModel)]="newProduct.stock" name="quantity" required min="1" class="form-control"/>
+                    </div>
+
+                <div class="form-group">
+                    <label>Current Image:</label>
+                    <img *ngIf="editMode && newProduct.thumbnail" [src]="newProduct.thumbnail" style="width: 100px; height: auto; margin-bottom: 10px;" />
+                </div>
+
+                <div class="form-group">
+                    <label>Image:</label>
+                    <input type="file" (change)="onFileChange($event)" name="image" required class="form-control"/>
+                </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<nav *ngIf="!searchTerm && products.length > 1 ">
+<ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)" tabindex="-1">Previous</a>
+    </li>
+    <li *ngFor="let page of [1,2,3,4,5]" class="page-item" [class.active]="currentPage === page">
+        <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+    </li>
+</ul>
+</nav>
+</div>

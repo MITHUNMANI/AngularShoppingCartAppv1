@@ -1,0 +1,42 @@
+.container {
+    margin-top: 20px;
+}
+.table img {
+    width: 50px;
+}
+.modal-header {
+    background-color: #f8f9fa; 
+}
+.modal-body {
+    padding: 20px; 
+}
+.btn-warning, .btn-danger {
+    margin-right: 5px;
+}
+.inline-btn{
+    display: inline-flex;
+    margin: 5px auto;
+}
+.inline-btn .btn{
+    background: #5b5959!important;
+    border: #6d5b5b!important;
+    color: #ffffff!important;
+}
+input[type="text"] {
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    width: calc(100% - 30px);
+}
+.pagination {
+    justify-content: center;
+    margin: 10px 0;
+}
+.page-link {
+    background: #999;
+    color: #fff;
+}
+.active > .page-link,
+.page-link.active {
+    border: 2px solid #13181e !important;
+}

@@ -1,0 +1,27 @@
+ 
+<div class='grid'>
+    <ng-container *ngIf="products.length > 1;else noDataFound">
+        <div *ngFor='let product of products | filter: searchTerm ' class='card'>
+            <img [src]='product.thumbnail' alt='{{ product.title }}' class='card-img-top' />
+            <div class='card-body'>
+                <h5 class='card-title'>{{ product.title }}</h5>
+                <p class='card-text'>{{ product.description }}</p>
+                <p class='card-price'>{{ product.price | currency }}</p>
+                <button (click)="addToCart(product)" class='btn btn-primary'>
+                    {{ isProductInCart(product) ? 'Remove from Cart' : 'Add to Cart' }}
+                </button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template  #noDataFound>
+        <div class='card' >
+            <img [src]=''  class='card-img-top' />
+            <div class='card-body'>
+                <h5 class='card-title'>No data</h5>
+             
+            </div>
+        </div>
+    </ng-template>
+</div>
+
+

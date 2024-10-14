@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Your Cart</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of cartItems">
+            <td>{{ item.title }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price | currency }}</td>
+            <td>{{ item.price * item.quantity | currency }}</td>
+        </tbody>
+    </table>
+    <div class="total">
+        Total: {{ calculateTotal() | currency }}
+    </div>
+</div>

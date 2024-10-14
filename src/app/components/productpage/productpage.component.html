@@ -1,0 +1,32 @@
+<div class="container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search products..."
+    class="search-bar" />
+<div>
+  
+    <app-product-card [products]="products" [searchTerm]="searchTerm" (addToCartFn)="addToCart($event)"></app-product-card>
+
+    <!-- <div *ngFor='let product of products | filter: searchTerm ' class='card'>
+        <img [src]='product.thumbnail' alt='{{ product.title }}' class='card-img-top' />
+        <div class='card-body'>
+            <h5 class='card-title'>{{ product.title }}</h5>
+            <p class='card-text'>{{ product.description }}</p>
+            <p class='card-price'>{{ product.price | currency }}</p>
+            <button (click)="addToCart(product)" class='btn btn-primary'>
+                {{ isProductInCart(product) ? 'Remove from Cart' : 'Add to Cart' }}
+            </button>
+        </div>
+    </div> -->
+</div>
+<nav aria-label="Page navigation" *ngIf="!searchTerm && products.length > 1 ">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="changePage(currentPage - 1)" tabindex="-1">Previous</a>
+        </li>
+        <li *ngFor="let page of [1,2,3,4,5]" class="page-item" [class.active]="currentPage === page">
+            <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+        </li>
+    </ul>
+</nav></div>
