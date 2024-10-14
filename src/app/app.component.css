@@ -29,7 +29,7 @@ footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 99;
+    /* z-index: 99; */
 }
 @media (max-width: 768px) {
     .navbar-nav {

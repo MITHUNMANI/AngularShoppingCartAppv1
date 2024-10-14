@@ -45,7 +45,6 @@ export class AdminpageComponent {
         ...this.newProduct,
         id: this.products[this.editIndex!].id
       });
-      this.products = this.productService.getProductsFromLocalStorage();
 
       // this.loadProducts();
     }
@@ -53,6 +52,8 @@ export class AdminpageComponent {
       console.log(this.newProduct,'new')
       await this.productService.addProduct(this.newProduct);
     }
+    this.products = this.productService.getProductsFromLocalStorage();
+
     this.closeModal();
   }
 
@@ -77,7 +78,7 @@ export class AdminpageComponent {
     if(file){
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.newProduct.image = e.target?.result as string;
+        this.newProduct.thumbnail = e.target?.result as string;
       }
       reader.readAsDataURL(file);
     }

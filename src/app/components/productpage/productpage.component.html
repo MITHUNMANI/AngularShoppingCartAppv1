@@ -4,7 +4,7 @@
 <div> 
     <app-product-card [products]="products" [searchTerm]="searchTerm" (addToCartFn)="addToCart($event)"></app-product-card>
 </div>
-<nav aria-label="Page navigation" *ngIf="!searchTerm && products.length > 1 ">
+<!-- <nav aria-label="Page navigation" *ngIf="!searchTerm && products.length > 1 ">
     <ul class="pagination">
         <li class="page-item" [class.disabled]="currentPage === 1">
             <a class="page-link" (click)="changePage(currentPage - 1)" tabindex="-1">Previous</a>
@@ -16,5 +16,5 @@
             <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
         </li>
     </ul>
-</nav>
+</nav> -->
 </div>

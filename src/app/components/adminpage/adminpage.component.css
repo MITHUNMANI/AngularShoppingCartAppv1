@@ -28,11 +28,11 @@ input[type="text"] {
     padding: 10px 15px;
     width: calc(100% - 30px);
 }
-.pagination {
+/* .pagination {
     justify-content: center;
     margin: 10px 0;
     height: 100px;
-}
+} */
 .page-link {
     background: #999;
     color: #fff;

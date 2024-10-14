@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    localStorage.removeItem('cart');
     localStorage.removeItem('user'); // Remove user data from local storage
     this.router.navigate(['/']); // Redirect to base URL
   }
